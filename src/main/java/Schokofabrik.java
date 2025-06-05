@@ -21,4 +21,5 @@ public class Schokofabrik extends JFrame{
     private JLabel lblVegan;
     private JButton speichernButton;
     private JButton berechnenButton;
+    private JLabel lblToppings;
 }
