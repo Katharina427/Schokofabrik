@@ -30,7 +30,7 @@ public class Schokofabrik extends JFrame {
         setTitle("Schokofabrik");
         setContentPane(myPanel);
         setVisible(true);
-        setSize(300, 300);
+        setSize(700, 300);
 
         // im Konstruktor:
         // Buttongroups erstellen, damit nur ein Radiobutton auswählbar ist
