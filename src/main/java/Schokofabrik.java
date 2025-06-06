@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Schokofabrik extends JFrame {
     private JPanel myPanel;
@@ -46,7 +48,32 @@ public class Schokofabrik extends JFrame {
         gruppierung2.add(rbXXL);
         gruppierung2.add(rb100);
         gruppierung2.add(rb25);
-}
+
+
+        // ActionListener
+        speichernButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+
+        berechnenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                initObjekte(); // Methoden-Aufruf
+            }
+        });
+    }
+
+    // Methode initObjekte()
+    public void initObjekte() {
+
+    }
+
+    // eigene Methode
 
     public static void main(String[] args) {
         new Schokofabrik();
