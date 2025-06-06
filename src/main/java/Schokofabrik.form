@@ -24,12 +24,12 @@
           <text value="Toppings"/>
         </properties>
       </component>
-      <component id="ebaf1" class="javax.swing.JLabel" binding="lblGröße">
+      <component id="ebaf1" class="javax.swing.JLabel" binding="lblGewicht">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Größe"/>
+          <text value="Gewicht"/>
         </properties>
       </component>
       <component id="30aca" class="javax.swing.JLabel" binding="lblPreis">
@@ -104,28 +104,20 @@
           <text value="Smarties"/>
         </properties>
       </component>
-      <component id="679f0" class="javax.swing.JRadioButton" binding="rbXXL">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="XXL (300g)"/>
-        </properties>
-      </component>
-      <component id="ac9f6" class="javax.swing.JRadioButton" binding="rbTafel">
+      <component id="ac9f6" class="javax.swing.JRadioButton" binding="rb100">
         <constraints>
           <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Tafel (100g)"/>
+          <text value="100g"/>
         </properties>
       </component>
-      <component id="b4fbf" class="javax.swing.JRadioButton" binding="rbRiegel">
+      <component id="b4fbf" class="javax.swing.JRadioButton" binding="rb25">
         <constraints>
           <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Riegel (25g)"/>
+          <text value="25g"/>
         </properties>
       </component>
       <component id="6373c" class="javax.swing.JTextField" binding="tfPreis">
@@ -166,6 +158,14 @@
         </constraints>
         <properties>
           <text value="Berechnen"/>
+        </properties>
+      </component>
+      <component id="44fd2" class="javax.swing.JRadioButton" binding="rb300">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="300g"/>
         </properties>
       </component>
     </children>

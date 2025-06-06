@@ -11,10 +11,10 @@ public class Schokofabrik extends JFrame {
     private JRadioButton rbNüsse;
     private JRadioButton rbSalzbrezeln;
     private JRadioButton rbSamrties;
-    private JLabel lblGröße;
+    private JLabel lblGewicht;
     private JRadioButton rbXXL;
-    private JRadioButton rbTafel;
-    private JRadioButton rbRiegel;
+    private JRadioButton rb100;
+    private JRadioButton rb25;
     private JLabel lblPreis;
     private JTextField tfPreis;
     private JCheckBox cbVegan;
@@ -22,6 +22,7 @@ public class Schokofabrik extends JFrame {
     private JButton speichernButton;
     private JButton berechnenButton;
     private JLabel lblToppings;
+    private JRadioButton rb300;
 
     // ArrayList
 
@@ -43,8 +44,8 @@ public class Schokofabrik extends JFrame {
         gruppierung1.add(rbWeiß);
 
         gruppierung2.add(rbXXL);
-        gruppierung2.add(rbTafel);
-        gruppierung2.add(rbRiegel);
+        gruppierung2.add(rb100);
+        gruppierung2.add(rb25);
 }
 
     public static void main(String[] args) {
