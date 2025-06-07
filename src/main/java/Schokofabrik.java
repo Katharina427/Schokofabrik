@@ -16,7 +16,7 @@ public class Schokofabrik extends JFrame {
     private JRadioButton rbNüsse;
     private JRadioButton rbSalzbrezeln;
     private JRadioButton rbSmarties;
-    private JLabel lblGewicht;
+    private JLabel lblGröße;
     private JRadioButton rbXXL;
     private JRadioButton rb100;
     private JRadioButton rb25;
@@ -47,7 +47,6 @@ public class Schokofabrik extends JFrame {
         myPanel.setBackground(Color.LIGHT_GRAY);
 
 
-        // im Konstruktor:
         // Buttongroups erstellen, damit nur ein Radiobutton auswählbar ist
         ButtonGroup gruppierung1 = new ButtonGroup();
         ButtonGroup gruppierung2 = new ButtonGroup();
@@ -67,7 +66,6 @@ public class Schokofabrik extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
                 // die ausgewählte Sorte erfassen
                 String sorte = "";
 
@@ -75,7 +73,7 @@ public class Schokofabrik extends JFrame {
                     sorte = "Vollmilch";
                 } else if (rbZartbitter.isSelected()) {
                     sorte = "Zartbitter";
-                }else if (rbWeiß.isSelected()) {
+                } else if (rbWeiß.isSelected()) {
                     sorte = "Weiß";
                 }
 
@@ -115,7 +113,7 @@ public class Schokofabrik extends JFrame {
                 try {
                     anzahl = Integer.parseInt(tfAnzahl.getText());
                 } catch (NumberFormatException a) {
-                    JOptionPane.showMessageDialog(null, "Bitte eine gültige Zahl eingeben!");
+                    JOptionPane.showMessageDialog(null, "Bitte die gewünschte Anzahl eingeben!");
                     return;
                 }
 
@@ -129,13 +127,18 @@ public class Schokofabrik extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                initObjekte(); // Methoden-Aufruf
+                berechnen(); // Methoden-Aufruf
             }
         });
     }
 
-    // Methode initObjekte()
-    public void initObjekte() {
+
+    // Methode speichern()
+
+
+
+    // Methode berechnen()
+    public void berechnen() {
 
         //Schokoladenart prüfen
         double schokoPreis = 0;
@@ -159,13 +162,13 @@ public class Schokofabrik extends JFrame {
         if (ausgewaehltesGewicht != null) {
             switch (ausgewaehltesGewicht) {
                 case "25g (Riegel)":
-                    gewichtPreis = 1.5;
+                    gewichtPreis = 1.50;
                     break;
                 case "100g (Tafel)":
-                    gewichtPreis = 3.0;
+                    gewichtPreis = 3.00;
                     break;
                 case "300g (XXL Tafel)":
-                    gewichtPreis = 6.0;
+                    gewichtPreis = 6.00;
                     break;
                 default:
                     gewichtPreis = 0; // unbekannter Wert, vllt noch Fehlermeldung einfügen
@@ -204,21 +207,20 @@ public class Schokofabrik extends JFrame {
         try {
             anzahl = Integer.parseInt(tfAnzahl.getText());
         } catch (NumberFormatException a) {
-            JOptionPane.showMessageDialog(null, "Bitte eine gültige Zahl eingeben!");
+            JOptionPane.showMessageDialog(null, "Bitte die gewünschte Anzahl eingeben!");
             return;
         }
 
         //Gesamtpreis
         double gesamtPreis = (gewichtPreis + toppingPreis + veganPreis + schokoPreis) * anzahl;
 
-        tfPreis.setText(gesamtPreis + "€");
+        tfPreis.setText(gesamtPreis + " €");
 
     }
 
     // eigene Methode
 
     public static void main(String[] args) {
-
 
         new Schokofabrik();
     }
