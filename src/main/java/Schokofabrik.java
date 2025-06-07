@@ -125,15 +125,30 @@ public class Schokofabrik extends JFrame {
 
     // Methode initObjekte()
     public void initObjekte() {
-        double basisPreis = 0;
+
+        //Schokoladenart prüfen
+        double schokoPreis = 0;
+
+        if (rbVollmilch.isSelected()) {
+            schokoPreis = 2.50;
+        }
+        if (rbWeiß.isSelected()) {
+            schokoPreis = 2.50;
+        }
+        if (rbZartbitter.isSelected()) {
+            schokoPreis = 2.50;
+        }
+
 
         //Gewichtpreise prüfen
+        double gewichtPreis = 0;
+
         if (rb25.isSelected()) {
-            basisPreis = 1.5;
+            gewichtPreis = 1.5;
         } else if (rb100.isSelected()) {
-            basisPreis = 3.0;
+            gewichtPreis = 3.0;
         }else if (rb300.isSelected()) {
-            basisPreis = 6.0;
+            gewichtPreis = 6.0;
         }
 
         //Preis pro Topping
@@ -156,14 +171,14 @@ public class Schokofabrik extends JFrame {
         }
 
 
-        // Vegan-Zuschlag
-        double veganZuschlag = 0;
+        // Vegan Preis
+        double veganPreis = 0;
         if (cbVegan.isSelected()) {
-            veganZuschlag = 1.0;
+            veganPreis = 1.0;
         }
 
         //Gesamtpreis
-        double gesamtPreis = basisPreis + toppingPreis + veganZuschlag;
+        double gesamtPreis = gewichtPreis + toppingPreis + veganPreis + schokoPreis;
 
         tfPreis.setText(gesamtPreis + "€");
 
