@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Color;
 
 public class Schokofabrik extends JFrame {
     private JPanel myPanel;
@@ -41,6 +42,10 @@ public class Schokofabrik extends JFrame {
         setContentPane(myPanel);
         setVisible(true);
         setSize(700, 300);
+
+        // Hintergrundfarbe zu Hellgrau verändert
+        myPanel.setBackground(Color.LIGHT_GRAY);
+
 
         // im Konstruktor:
         // Buttongroups erstellen, damit nur ein Radiobutton auswählbar ist
@@ -213,6 +218,8 @@ public class Schokofabrik extends JFrame {
     // eigene Methode
 
     public static void main(String[] args) {
+
+
         new Schokofabrik();
     }
 
