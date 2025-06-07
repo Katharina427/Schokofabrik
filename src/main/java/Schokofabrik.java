@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Schokofabrik extends JFrame {
     private JPanel myPanel;
@@ -8,11 +10,11 @@ public class Schokofabrik extends JFrame {
     private JRadioButton rbZartbitter;
     private JRadioButton rbWeiß;
     private JLabel lblSorte;
-    private JRadioButton himbeerenRadioButton;
+    private JRadioButton rbHimbeeren;
     private JRadioButton rbKekse;
     private JRadioButton rbNüsse;
     private JRadioButton rbSalzbrezeln;
-    private JRadioButton rbSamrties;
+    private JRadioButton rbSmarties;
     private JLabel lblGewicht;
     private JRadioButton rbXXL;
     private JRadioButton rb100;
@@ -25,12 +27,14 @@ public class Schokofabrik extends JFrame {
     private JButton berechnenButton;
     private JLabel lblToppings;
     private JRadioButton rb300;
+    private JTextField tfSpeichern;
 
     // ArrayList
 
     // Konstruktor
     public Schokofabrik() {
         setTitle("Schokofabrik");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(myPanel);
         setVisible(true);
         setSize(700, 300);
@@ -54,6 +58,57 @@ public class Schokofabrik extends JFrame {
         speichernButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+
+                // die ausgewählte Sorte erfassen
+                String sorte = "";
+
+                if (rbVollmilch.isSelected()) {
+                    sorte = "Vollmilch";
+                } else if (rbZartbitter.isSelected()) {
+                    sorte = "Zartbitter";
+                }else if (rbWeiß.isSelected()) {
+                    sorte = "Weiß";
+                }
+
+                // die ausgewählten Toppings erfassen
+                List<String> toppings = new ArrayList<>();
+
+                if (rbKekse.isSelected()) {
+                    toppings.add("Kekse");
+                } if (rbNüsse.isSelected()) {
+                    toppings.add("Nüsse");
+                } if (rbSalzbrezeln.isSelected()) {
+                    toppings.add("Salzbrezeln");
+                } if (rbSmarties.isSelected()) {
+                    toppings.add("Smarties");
+                } if (rbHimbeeren.isSelected()) {
+                    toppings.add("Himbeeren");
+                }
+
+                // das ausgewählte Gewicht erfassen
+
+                double gewicht = 0;
+
+                if (rb25.isSelected()) {
+                    gewicht = 25;
+                } else if (rb100.isSelected()) {
+                    gewicht = 100;
+                } else if (rb300.isSelected()) {
+                    gewicht = 300;
+                }
+
+                // erfassen, ob vegan oder nicht
+
+                boolean vegan = false;
+
+                if (cbVegan.isSelected()) {
+                    vegan = true;
+                }
+
+
+
+                tfSpeichern.setText("Schokoladensorte: " + sorte + ", Toppings: " + toppings + ", Gewicht: " + gewicht + ", Vegan: " + vegan);
 
             }
         });
