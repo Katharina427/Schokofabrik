@@ -28,6 +28,9 @@ public class Schokofabrik extends JFrame {
     private JLabel lblToppings;
     private JRadioButton rb300;
     private JTextField tfSpeichern;
+    private JComboBox cbGewicht;
+    private JLabel lblAnzahl;
+    private JTextField tfAnzahl;
 
     // ArrayList
 
@@ -88,15 +91,10 @@ public class Schokofabrik extends JFrame {
 
                 // das ausgewählte Gewicht erfassen
 
-                double gewicht = 0;
+                String gewicht = "";
+                gewicht = (String) cbGewicht.getSelectedItem();
 
-                if (rb25.isSelected()) {
-                    gewicht = 25;
-                } else if (rb100.isSelected()) {
-                    gewicht = 100;
-                } else if (rb300.isSelected()) {
-                    gewicht = 300;
-                }
+
 
                 // erfassen, ob vegan oder nicht
 
@@ -106,9 +104,17 @@ public class Schokofabrik extends JFrame {
                     vegan = true;
                 }
 
+                // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
+                int anzahl = 0;
 
+                try {
+                    anzahl = Integer.parseInt(tfAnzahl.getText());
+                } catch (NumberFormatException a) {
+                    JOptionPane.showMessageDialog(null, "Bitte eine gültige Zahl eingeben!");
+                    return;
+                }
 
-                tfSpeichern.setText("Schokoladensorte: " + sorte + ", Toppings: " + toppings + ", Gewicht: " + gewicht + ", Vegan: " + vegan);
+                tfSpeichern.setText("Schokoladensorte: " + sorte + ", Toppings: " + toppings + ", Gewicht: " + gewicht + ", Vegan: " + vegan + ", Anzahl: " + anzahl);
 
             }
         });
@@ -143,12 +149,22 @@ public class Schokofabrik extends JFrame {
         //Gewichtpreise prüfen
         double gewichtPreis = 0;
 
-        if (rb25.isSelected()) {
-            gewichtPreis = 1.5;
-        } else if (rb100.isSelected()) {
-            gewichtPreis = 3.0;
-        }else if (rb300.isSelected()) {
-            gewichtPreis = 6.0;
+        String ausgewaehltesGewicht = (String) cbGewicht.getSelectedItem();
+
+        if (ausgewaehltesGewicht != null) {
+            switch (ausgewaehltesGewicht) {
+                case "25g (Riegel)":
+                    gewichtPreis = 1.5;
+                    break;
+                case "100g (Tafel)":
+                    gewichtPreis = 3.0;
+                    break;
+                case "300g (XXL Tafel)":
+                    gewichtPreis = 6.0;
+                    break;
+                default:
+                    gewichtPreis = 0; // unbekannter Wert, vllt noch Fehlermeldung einfügen
+            }
         }
 
         //Preis pro Topping
@@ -177,8 +193,18 @@ public class Schokofabrik extends JFrame {
             veganPreis = 1.0;
         }
 
+        // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
+        int anzahl = 0;
+
+        try {
+            anzahl = Integer.parseInt(tfAnzahl.getText());
+        } catch (NumberFormatException a) {
+            JOptionPane.showMessageDialog(null, "Bitte eine gültige Zahl eingeben!");
+            return;
+        }
+
         //Gesamtpreis
-        double gesamtPreis = gewichtPreis + toppingPreis + veganPreis + schokoPreis;
+        double gesamtPreis = (gewichtPreis + toppingPreis + veganPreis + schokoPreis) * anzahl;
 
         tfPreis.setText(gesamtPreis + "€");
 
