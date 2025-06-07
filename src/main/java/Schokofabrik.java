@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Color;
@@ -29,11 +30,12 @@ public class Schokofabrik extends JFrame {
     private JLabel lblToppings;
     private JRadioButton rb300;
     private JTextField tfSpeichern;
-    private JComboBox cbGewicht;
+    private JComboBox cbGröße;
     private JLabel lblAnzahl;
     private JTextField tfAnzahl;
 
-    // ArrayList
+    // ArrayList "schoki" von Objekten des Typs "Schokolade" erstellen
+    private ArrayList<Schokolade> schoki = new ArrayList();
 
     // Konstruktor
     public Schokofabrik() {
@@ -43,7 +45,7 @@ public class Schokofabrik extends JFrame {
         setVisible(true);
         setSize(700, 300);
 
-        // Hintergrundfarbe zu Hellgrau verändert
+        // Hintergrundfarbe in hellgrau einfärben
         myPanel.setBackground(Color.LIGHT_GRAY);
 
 
@@ -66,59 +68,7 @@ public class Schokofabrik extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                // die ausgewählte Sorte erfassen
-                String sorte = "";
-
-                if (rbVollmilch.isSelected()) {
-                    sorte = "Vollmilch";
-                } else if (rbZartbitter.isSelected()) {
-                    sorte = "Zartbitter";
-                } else if (rbWeiß.isSelected()) {
-                    sorte = "Weiß";
-                }
-
-                // die ausgewählten Toppings erfassen
-                List<String> toppings = new ArrayList<>();
-
-                if (rbKekse.isSelected()) {
-                    toppings.add("Kekse");
-                } if (rbNüsse.isSelected()) {
-                    toppings.add("Nüsse");
-                } if (rbSalzbrezeln.isSelected()) {
-                    toppings.add("Salzbrezeln");
-                } if (rbSmarties.isSelected()) {
-                    toppings.add("Smarties");
-                } if (rbHimbeeren.isSelected()) {
-                    toppings.add("Himbeeren");
-                }
-
-                // das ausgewählte Gewicht erfassen
-
-                String gewicht = "";
-                gewicht = (String) cbGewicht.getSelectedItem();
-
-
-
-                // erfassen, ob vegan oder nicht
-
-                boolean vegan = false;
-
-                if (cbVegan.isSelected()) {
-                    vegan = true;
-                }
-
-                // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
-                int anzahl = 0;
-
-                try {
-                    anzahl = Integer.parseInt(tfAnzahl.getText());
-                } catch (NumberFormatException a) {
-                    JOptionPane.showMessageDialog(null, "Bitte die gewünschte Anzahl eingeben!");
-                    return;
-                }
-
-                tfSpeichern.setText("Schokoladensorte: " + sorte + ", Toppings: " + toppings + ", Gewicht: " + gewicht + ", Vegan: " + vegan + ", Anzahl: " + anzahl);
-
+                speichern();
             }
         });
 
@@ -134,14 +84,67 @@ public class Schokofabrik extends JFrame {
 
 
     // Methode speichern()
+    public void speichern() {
 
+        // die ausgewählte Sorte erfassen
+        String sorte = "";
+
+        if (rbVollmilch.isSelected()) {
+            sorte = "Vollmilch";
+        } else if (rbZartbitter.isSelected()) {
+            sorte = "Zartbitter";
+        } else if (rbWeiß.isSelected()) {
+            sorte = "Weiß";
+        }
+
+
+        // die ausgewählten Toppings erfassen
+        List<String> toppings = new ArrayList<>();
+
+        if (rbKekse.isSelected()) {
+            toppings.add("Kekse");
+        } if (rbNüsse.isSelected()) {
+            toppings.add("Nüsse");
+        } if (rbSalzbrezeln.isSelected()) {
+            toppings.add("Salzbrezeln");
+        } if (rbSmarties.isSelected()) {
+            toppings.add("Smarties");
+        } if (rbHimbeeren.isSelected()) {
+            toppings.add("Himbeeren");
+        }
+
+        // die ausgewählte Größe erfassen
+        String größe = "";
+        größe = (String) cbGröße.getSelectedItem();
+
+
+        // erfassen, ob vegan oder nicht
+        boolean vegan = false;
+
+        if (cbVegan.isSelected()) {
+            vegan = true;
+        }
+
+        // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
+        int anzahl = 0;
+
+        try {
+            anzahl = Integer.parseInt(tfAnzahl.getText());
+        } catch (NumberFormatException a) {
+            JOptionPane.showMessageDialog(null, "Bitte die gewünschte Anzahl eingeben!");
+            return;
+        }
+
+        tfSpeichern.setText("Schokoladensorte: " + sorte + ", Toppings: " + toppings + ", Größe: " + größe + ", Vegan: " + vegan + ", Anzahl: " + anzahl);
+
+    }
 
 
     // Methode berechnen()
     public void berechnen() {
 
         //Schokoladenart prüfen
-        double schokoPreis = 0;
+        double schokoPreis = 0.00;
 
         if (rbVollmilch.isSelected()) {
             schokoPreis = 2.50;
@@ -154,30 +157,33 @@ public class Schokofabrik extends JFrame {
         }
 
 
-        //Gewichtpreise prüfen
-        double gewichtPreis = 0;
+        // Größenpreise prüfen
+        double größenPreis = 0.00;
 
-        String ausgewaehltesGewicht = (String) cbGewicht.getSelectedItem();
+        String ausgewählteGröße = (String) cbGröße.getSelectedItem();
 
-        if (ausgewaehltesGewicht != null) {
-            switch (ausgewaehltesGewicht) {
+        if (ausgewählteGröße != null) {
+            switch (ausgewählteGröße) {
                 case "25g (Riegel)":
-                    gewichtPreis = 1.50;
+                    größenPreis = 1.50;
                     break;
                 case "100g (Tafel)":
-                    gewichtPreis = 3.00;
+                    größenPreis = 3.00;
                     break;
                 case "300g (XXL Tafel)":
-                    gewichtPreis = 6.00;
+                    größenPreis = 6.00;
                     break;
                 default:
-                    gewichtPreis = 0; // unbekannter Wert, vllt noch Fehlermeldung einfügen
+                    größenPreis = 0.00; // unbekannter Wert, vllt noch Fehlermeldung einfügen
             }
         }
 
         //Preis pro Topping
-        double toppingPreis = 0;
+        double toppingPreis = 0.00;
 
+        if (rbHimbeeren.isSelected()) {
+            toppingPreis += 0.90;
+        }
         if (rbKekse.isSelected()) {
             toppingPreis += 0.50;
         }
@@ -190,15 +196,12 @@ public class Schokofabrik extends JFrame {
         if (rbSmarties.isSelected()) {
             toppingPreis += 0.40;
         }
-        if (rbHimbeeren.isSelected()) {
-            toppingPreis += 0.90;
-        }
 
 
         // Vegan Preis
-        double veganPreis = 0;
+        double veganPreis = 0.00;
         if (cbVegan.isSelected()) {
-            veganPreis = 1.0;
+            veganPreis = 1.00;
         }
 
         // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
@@ -212,13 +215,12 @@ public class Schokofabrik extends JFrame {
         }
 
         //Gesamtpreis
-        double gesamtPreis = (gewichtPreis + toppingPreis + veganPreis + schokoPreis) * anzahl;
+        double gesamtPreis = (größenPreis + toppingPreis + veganPreis + schokoPreis) * anzahl;
 
         tfPreis.setText(gesamtPreis + " €");
 
     }
 
-    // eigene Methode
 
     public static void main(String[] args) {
 
