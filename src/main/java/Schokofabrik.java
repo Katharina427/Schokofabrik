@@ -125,6 +125,47 @@ public class Schokofabrik extends JFrame {
 
     // Methode initObjekte()
     public void initObjekte() {
+        double basisPreis = 0;
+
+        //Gewichtpreise prüfen
+        if (rb25.isSelected()) {
+            basisPreis = 1.5;
+        } else if (rb100.isSelected()) {
+            basisPreis = 3.0;
+        }else if (rb300.isSelected()) {
+            basisPreis = 6.0;
+        }
+
+        //Preis pro Topping
+        double toppingPreis = 0;
+
+        if (rbKekse.isSelected()) {
+            toppingPreis += 0.50;
+        }
+        if (rbNüsse.isSelected()) {
+            toppingPreis += 0.70;
+        }
+        if (rbSalzbrezeln.isSelected()) {
+            toppingPreis += 0.60;
+        }
+        if (rbSmarties.isSelected()) {
+            toppingPreis += 0.40;
+        }
+        if (rbHimbeeren.isSelected()) {
+            toppingPreis += 0.90;
+        }
+
+
+        // Vegan-Zuschlag
+        double veganZuschlag = 0;
+        if (cbVegan.isSelected()) {
+            veganZuschlag = 1.0;
+        }
+
+        //Gesamtpreis
+        double gesamtPreis = basisPreis + toppingPreis + veganZuschlag;
+
+        tfPreis.setText(gesamtPreis + "€");
 
     }
 
