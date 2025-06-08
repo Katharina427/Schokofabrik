@@ -1,7 +1,8 @@
+package Projekt;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.Color;
@@ -29,10 +30,10 @@ public class Schokofabrik extends JFrame {
     private JButton berechnenButton;
     private JLabel lblToppings;
     private JRadioButton rb300;
-    private JTextField tfSpeichern;
     private JComboBox cbGröße;
     private JLabel lblAnzahl;
     private JTextField tfAnzahl;
+    private JTextArea textAreaSpeichern;
 
     // ArrayList "schoki" von Objekten des Typs "Schokolade" erstellen
     private ArrayList<Schokolade> schoki = new ArrayList();
@@ -101,7 +102,9 @@ public class Schokofabrik extends JFrame {
         // die ausgewählten Toppings erfassen
         List<String> toppings = new ArrayList<>();
 
-        if (rbKekse.isSelected()) {
+        if (rbHimbeeren.isSelected()) {
+            toppings.add("Himbeeren");
+        } if (rbKekse.isSelected()) {
             toppings.add("Kekse");
         } if (rbNüsse.isSelected()) {
             toppings.add("Nüsse");
@@ -109,8 +112,6 @@ public class Schokofabrik extends JFrame {
             toppings.add("Salzbrezeln");
         } if (rbSmarties.isSelected()) {
             toppings.add("Smarties");
-        } if (rbHimbeeren.isSelected()) {
-            toppings.add("Himbeeren");
         }
 
         // die ausgewählte Größe erfassen
@@ -135,7 +136,7 @@ public class Schokofabrik extends JFrame {
             return;
         }
 
-        tfSpeichern.setText("Schokoladensorte: " + sorte + ", Toppings: " + toppings + ", Größe: " + größe + ", Vegan: " + vegan + ", Anzahl: " + anzahl);
+        textAreaSpeichern.setText("Schokoladensorte: " + sorte + ", Toppings: " + toppings + ", Größe: " + größe + ", Vegan: " + vegan + ", Anzahl: " + anzahl);
 
     }
 

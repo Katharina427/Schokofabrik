@@ -1,3 +1,5 @@
+package Projekt;
+
 public class Schokolade {
 
     // Attribute deklarieren
