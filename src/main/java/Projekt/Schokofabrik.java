@@ -44,7 +44,7 @@ public class Schokofabrik extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(myPanel);
         setVisible(true);
-        setSize(700, 300);
+        setSize(700, 400);
 
         // Hintergrundfarbe in hellgrau einfärben
         myPanel.setBackground(Color.LIGHT_GRAY);
@@ -87,56 +87,69 @@ public class Schokofabrik extends JFrame {
     // Methode speichern()
     public void speichern() {
 
-        // die ausgewählte Sorte erfassen
-        String sorte = "";
-
-        if (rbVollmilch.isSelected()) {
-            sorte = "Vollmilch";
-        } else if (rbZartbitter.isSelected()) {
-            sorte = "Zartbitter";
-        } else if (rbWeiß.isSelected()) {
-            sorte = "Weiß";
-        }
-
-
-        // die ausgewählten Toppings erfassen
-        List<String> toppings = new ArrayList<>();
-
-        if (rbHimbeeren.isSelected()) {
-            toppings.add("Himbeeren");
-        } if (rbKekse.isSelected()) {
-            toppings.add("Kekse");
-        } if (rbNüsse.isSelected()) {
-            toppings.add("Nüsse");
-        } if (rbSalzbrezeln.isSelected()) {
-            toppings.add("Salzbrezeln");
-        } if (rbSmarties.isSelected()) {
-            toppings.add("Smarties");
-        }
-
-        // die ausgewählte Größe erfassen
-        String größe = "";
-        größe = (String) cbGröße.getSelectedItem();
-
-
-        // erfassen, ob vegan oder nicht
-        boolean vegan = false;
-
-        if (cbVegan.isSelected()) {
-            vegan = true;
-        }
-
-        // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
-        int anzahl = 0;
-
         try {
-            anzahl = Integer.parseInt(tfAnzahl.getText());
-        } catch (NumberFormatException a) {
-            JOptionPane.showMessageDialog(null, "Bitte die gewünschte Anzahl eingeben!");
-            return;
-        }
 
-        textAreaSpeichern.setText("Schokoladensorte: " + sorte + ", Toppings: " + toppings + ", Größe: " + größe + ", Vegan: " + vegan + ", Anzahl: " + anzahl);
+            // die ausgewählte Sorte erfassen
+            String sorte = "";
+
+            if (rbVollmilch.isSelected()) {
+                sorte = "Vollmilch";
+            } else if (rbZartbitter.isSelected()) {
+                sorte = "Zartbitter";
+            } else if (rbWeiß.isSelected()) {
+                sorte = "Weiß";
+            } else {
+                throw new Exception("Bitte eine Schokoladensorte wählen");
+            }
+
+
+            // die ausgewählten Toppings erfassen
+            List<String> toppings = new ArrayList<>();
+
+            if (rbHimbeeren.isSelected()) {
+                toppings.add("Himbeeren");
+            } if (rbKekse.isSelected()) {
+                toppings.add("Kekse");
+            } if (rbNüsse.isSelected()) {
+                toppings.add("Nüsse");
+            } if (rbSalzbrezeln.isSelected()) {
+                toppings.add("Salzbrezeln");
+            } if (rbSmarties.isSelected()) {
+                toppings.add("Smarties");
+            }
+
+            // die ausgewählte Größe erfassen
+            String größe = "";
+            größe = (String) cbGröße.getSelectedItem();
+
+
+            // erfassen, ob vegan oder nicht
+            boolean vegan = false;
+
+            if (cbVegan.isSelected()) {
+                vegan = true;
+            }
+
+            // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
+            String eingabe = tfAnzahl.getText();
+            if (eingabe.isEmpty()) {
+                throw new Exception("Bitte die gewünschte Anzahl eingeben.");
+            }
+
+            int anzahl = Integer.parseInt(eingabe);
+            if (anzahl < 1) {
+                throw new Exception("Bitte wähle eine gültige Anzahl.");
+            }
+
+
+            // Zusammenfassung der Bestellung
+            textAreaSpeichern.setText("Schokoladensorte: " + sorte + ", Toppings: " + toppings + ", Größe: " + größe + ", Vegan: " + vegan + ", Anzahl: " + anzahl);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Bei Anzahl bitte eine ganze Zahl eingeben.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
 
     }
 
