@@ -99,23 +99,22 @@ public class Schokofabrik extends JFrame {
             } else if (rbWeiß.isSelected()) {
                 sorte = "Weiß";
             } else {
-                throw new Exception("Bitte eine Schokoladensorte wählen");
+                throw new Exception("Bitte eine Schokoladensorte wählen.");
             }
 
 
             // die ausgewählten Toppings erfassen
-            List<String> toppings = new ArrayList<>();
-
+            String toppings = "";
             if (rbHimbeeren.isSelected()) {
-                toppings.add("Himbeeren");
+                toppings += "Himbeeren";
             } if (rbKekse.isSelected()) {
-                toppings.add("Kekse");
+                toppings += "Kekse";
             } if (rbNüsse.isSelected()) {
-                toppings.add("Nüsse");
+                toppings += "Nüsse";
             } if (rbSalzbrezeln.isSelected()) {
-                toppings.add("Salzbrezeln");
+                toppings += "Salzbrezeln";
             } if (rbSmarties.isSelected()) {
-                toppings.add("Smarties");
+                toppings += "Smarties";
             }
 
             // die ausgewählte Größe erfassen
@@ -144,6 +143,14 @@ public class Schokofabrik extends JFrame {
 
             // Zusammenfassung der Bestellung
             textAreaSpeichern.setText("Schokoladensorte: " + sorte + ", Toppings: " + toppings + ", Größe: " + größe + ", Vegan: " + vegan + ", Anzahl: " + anzahl);
+
+
+            // Erstellen eines Objektes der Klasse Schokolade
+            Schokolade s = new Schokolade(sorte, toppings, größe, vegan, anzahl);
+
+            // Hinzufügen des Objektes zur ArrayList "schoki"
+            schoki.add(s);
+
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Bei Anzahl bitte eine ganze Zahl eingeben.");
