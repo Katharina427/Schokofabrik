@@ -18,9 +18,6 @@ public class Schokofabrik extends JFrame {
     private JRadioButton rbSalzbrezeln;
     private JRadioButton rbSmarties;
     private JLabel lblGröße;
-    private JRadioButton rbXXL;
-    private JRadioButton rb100;
-    private JRadioButton rb25;
     private JLabel lblPreis;
     private JTextField tfPreis;
     private JCheckBox cbVegan;
@@ -28,7 +25,6 @@ public class Schokofabrik extends JFrame {
     private JButton speichernButton;
     private JButton berechnenButton;
     private JLabel lblToppings;
-    private JRadioButton rb300;
     private JComboBox cbGröße;
     private JLabel lblAnzahl;
     private JTextField tfAnzahl;
@@ -175,9 +171,12 @@ public class Schokofabrik extends JFrame {
             // Komma und Leerzeichen am Ende entfernen
             if (!toppings.isEmpty()) {
                 toppings = toppings.substring(0, toppings.length() -2);
+
+                // wenn keine Toppings ausgewählt sind
             } else {
                 toppings = "/";
             }
+
 
             // die ausgewählte Größe erfassen
             String größe = cbGröße.getSelectedItem().toString();
@@ -251,8 +250,9 @@ public class Schokofabrik extends JFrame {
 
         /* Zugriff auf Attribut "Sorte" des Objekts über Getter-Methode,
         da Attribute in Klasse "Schokolade" auf private gesetzt sind */
-        // wenn (vegan == true) in ArrayList "bestellung", hänge Ausgabe der textArea an
+        // nur Ausgabe von Objekten, die Filter entsprechen, werden in der textArea ausgegeben
 
+        // Filter lesen
         String gefiltert = cbFiltern.getSelectedItem().toString();
 
         for (Schokolade s : bestellung) {
@@ -269,6 +269,7 @@ public class Schokofabrik extends JFrame {
 
         double gesamtpreis = 0.00;
 
+        // Gesamtpreis setzt sich aus Einzelpreisen jedes Objekts zusammen
         for (Schokolade s : bestellung) {
             gesamtpreis += s.berechneEinzelpreis();
         }
