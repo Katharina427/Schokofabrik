@@ -1,5 +1,7 @@
 package Projekt;
 
+import javax.swing.*;
+
 public class Schokolade {
 
     // Attribute deklarieren
@@ -19,10 +21,44 @@ public class Schokolade {
         this.anzahl = anzahl;
     }
 
-    public String toString() {
-        return "Schokoladensorte: " + sorte + "; Toppings: " + toppings + "; Größe: " + größe + "; Vegan: " + vegan + "; Anzahl: " + anzahl;
+    public String getSorte() {
+        return sorte;
     }
 
 
+    // berechneEinzelpreis-Methode
+    public double berechneEinzelpreis() {
+
+        double preis = 0.00;
+
+        // Größenpreise
+
+        switch (größe) {
+            case "Riegel (25g)":
+                preis = 1.50;
+                break;
+            case "Tafel (100g)":
+                preis = 3.00;
+                break;
+            case "XXL Tafel (300g)":
+                preis = 6.00;
+                break;
+        }
+
+        // Toppingpreis
+        preis += 1.00;
+
+        // Veganpreis
+        if (vegan == true) {
+            preis += 1.00;
+        }
+
+        return preis * anzahl;
+    }
+
+
+    public String toString() {
+        return "Schokoladensorte: " + sorte + "; Toppings: " + toppings + "; Größe: " + größe + "; Vegan: " + vegan + "; Anzahl: " + anzahl;
+    }
 
 }

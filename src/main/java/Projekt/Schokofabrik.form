@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Projekt.Schokofabrik">
-  <grid id="27dc6" binding="myPanel" layout-manager="GridLayoutManager" row-count="11" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="myPanel" layout-manager="GridLayoutManager" row-count="11" column-count="8" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="782" height="417"/>
+      <xy x="20" y="20" width="782" height="456"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -82,7 +82,7 @@
       </component>
       <component id="13639" class="javax.swing.JRadioButton" binding="rbSalzbrezeln">
         <constraints>
-          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Salzbrezeln"/>
@@ -90,7 +90,7 @@
       </component>
       <component id="80463" class="javax.swing.JRadioButton" binding="rbSmarties">
         <constraints>
-          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Smarties"/>
@@ -124,7 +124,7 @@
       </component>
       <component id="95e38" class="javax.swing.JButton" binding="speichernButton">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="7" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Speichern"/>
@@ -144,9 +144,9 @@
         </constraints>
         <properties>
           <model>
-            <item value="25g (Riegel)"/>
-            <item value="100g (Tafel)"/>
-            <item value="300g (XXL Tafel)"/>
+            <item value="Riegel (25g)"/>
+            <item value="Tafel (100g)"/>
+            <item value="XXL Tafel (300g)"/>
           </model>
         </properties>
       </component>
@@ -168,7 +168,7 @@
       </component>
       <component id="fa686" class="javax.swing.JRadioButton" binding="rbWeiß">
         <constraints>
-          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Weiß"/>
@@ -176,20 +176,12 @@
       </component>
       <component id="f9145" class="javax.swing.JTextArea" binding="textArea">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="7" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="6" column="0" row-span="1" col-span="7" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
         <properties>
           <editable value="false"/>
-        </properties>
-      </component>
-      <component id="b8324" class="javax.swing.JButton" binding="ausgebenButton" default-binding="true">
-        <constraints>
-          <grid row="6" column="0" row-span="1" col-span="7" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Ausgeben"/>
         </properties>
       </component>
       <component id="2ec2" class="javax.swing.JButton" binding="hinzufügenButton">
@@ -198,6 +190,35 @@
         </constraints>
         <properties>
           <text value="weitere Schokolade hinzufügen"/>
+        </properties>
+      </component>
+      <component id="b8324" class="javax.swing.JButton" binding="ausgebenButton" default-binding="true">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Ausgeben"/>
+        </properties>
+      </component>
+      <component id="b9113" class="javax.swing.JButton" binding="filternButton" default-binding="true">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Filtern"/>
+        </properties>
+      </component>
+      <component id="f734" class="javax.swing.JComboBox" binding="cbFiltern">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="kein Filter ausgewählt"/>
+            <item value="Vollmilch"/>
+            <item value="Zartbitter"/>
+            <item value="Weiß"/>
+          </model>
         </properties>
       </component>
     </children>

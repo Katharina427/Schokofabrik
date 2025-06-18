@@ -35,6 +35,8 @@ public class Schokofabrik extends JFrame {
     private JTextArea textArea;
     private JButton ausgebenButton;
     private JButton hinzufügenButton;
+    private JButton filternButton;
+    private JComboBox cbFiltern;
 
     // ArrayList "bestellung" von Objekten des Typs "Schokolade" erstellen
     private ArrayList<Schokolade> bestellung = new ArrayList();
@@ -80,6 +82,15 @@ public class Schokofabrik extends JFrame {
         });
 
 
+        filternButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                filtern();
+            }
+        });
+
+
         berechnenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -118,9 +129,9 @@ public class Schokofabrik extends JFrame {
     // initObjekte-Methode
     public void initObjekte() {
 
-        Schokolade s1 = new Schokolade("Vollmilch", "Himbeeren, Salzbrezeln", "100g (Tafel)", false, 2);
-        Schokolade s2 = new Schokolade("Zartbitter", "Nüsse", "25g (Riegel)", false, 5);
-        Schokolade s3 = new Schokolade("Weiß", "Smarties, Kekse", "300g (XXL Tafel)", true, 1);
+        Schokolade s1 = new Schokolade("Vollmilch", "Himbeeren, Salzbrezeln", "Tafel (100g)", false, 2);
+        Schokolade s2 = new Schokolade("Zartbitter", "Nüsse", "Riegel (25g)", false, 5);
+        Schokolade s3 = new Schokolade("Weiß", "Smarties, Kekse", "XXL Tafel (300g)", true, 1);
 
         bestellung.add(s1);
         bestellung.add(s2);
@@ -232,83 +243,37 @@ public class Schokofabrik extends JFrame {
     }
 
 
+    // Methode filtern()
+    public void filtern() {
+
+        // Überschreiben der textArea auf "nichts", um Doppelungen nach jeder Ausgabe zu vermeiden
+        textArea.setText("");
+
+        /* Zugriff auf Attribut "Sorte" des Objekts über Getter-Methode,
+        da Attribute in Klasse "Schokolade" auf private gesetzt sind */
+        // wenn (vegan == true) in ArrayList "bestellung", hänge Ausgabe der textArea an
+
+        String gefiltert = cbFiltern.getSelectedItem().toString();
+
+        for (Schokolade s : bestellung) {
+
+            // wenn kein Filter ausgewählt ist oder der Filter mit Objekt übereinstimmt
+            if (gefiltert.equals("kein Filter ausgewählt") || s.getSorte().equals(gefiltert)) {
+                textArea.append(s.toString() + "\n");
+            }
+        }
+    }
+
     // Methode berechnen()
     public void berechnen() {
 
-        //Schokoladenart prüfen
-        double schokoPreis = 0.00;
+        double gesamtpreis = 0.00;
 
-        if (rbVollmilch.isSelected()) {
-            schokoPreis = 2.50;
-        }
-        if (rbWeiß.isSelected()) {
-            schokoPreis = 2.50;
-        }
-        if (rbZartbitter.isSelected()) {
-            schokoPreis = 2.50;
+        for (Schokolade s : bestellung) {
+            gesamtpreis += s.berechneEinzelpreis();
         }
 
-
-        // Größenpreise prüfen
-        double größenPreis = 0.00;
-
-        String ausgewählteGröße = cbGröße.getSelectedItem().toString();
-
-        if (ausgewählteGröße != null) {
-            switch (ausgewählteGröße) {
-                case "25g (Riegel)":
-                    größenPreis = 1.50;
-                    break;
-                case "100g (Tafel)":
-                    größenPreis = 3.00;
-                    break;
-                case "300g (XXL Tafel)":
-                    größenPreis = 6.00;
-                    break;
-            }
-        }
-
-        //Preis pro Topping
-        double toppingPreis = 0.00;
-
-        if (rbHimbeeren.isSelected()) {
-            toppingPreis += 0.90;
-        }
-        if (rbKekse.isSelected()) {
-            toppingPreis += 0.50;
-        }
-        if (rbNüsse.isSelected()) {
-            toppingPreis += 0.70;
-        }
-        if (rbSalzbrezeln.isSelected()) {
-            toppingPreis += 0.60;
-        }
-        if (rbSmarties.isSelected()) {
-            toppingPreis += 0.40;
-        }
-
-
-        // Vegan Preis
-        double veganPreis = 0.00;
-        if (cbVegan.isSelected()) {
-            veganPreis = 1.00;
-        }
-
-        // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
-        int anzahl = 0;
-
-        try {
-            anzahl = Integer.parseInt(tfAnzahl.getText());
-
-        } catch (IllegalArgumentException a) {
-            JOptionPane.showMessageDialog(null, "Bitte zunächst alle Eingaben tätigen.");
-        }
-
-        //Gesamtpreis
-        double gesamtPreis = (größenPreis + toppingPreis + veganPreis + schokoPreis) * anzahl;
-
-        tfPreis.setText(gesamtPreis + " €");
-
+        tfPreis.setText(gesamtpreis + " €");
     }
 
     public static void main(String[] args) {
