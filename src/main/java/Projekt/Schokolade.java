@@ -57,6 +57,7 @@ public class Schokolade {
     }
 
 
+    // Ausgabe der erstellten Objekte
     public String toString() {
         return "Schokoladensorte: " + sorte + "; Toppings: " + toppings + "; Größe: " + größe + "; Vegan: " + vegan + "; Anzahl: " + anzahl;
     }

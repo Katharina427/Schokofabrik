@@ -250,7 +250,7 @@ public class Schokofabrik extends JFrame {
 
         /* Zugriff auf Attribut "Sorte" des Objekts über Getter-Methode,
         da Attribute in Klasse "Schokolade" auf private gesetzt sind */
-        // nur Ausgabe von Objekten, die Filter entsprechen, werden in der textArea ausgegeben
+        // nur Ausgabe von Objekten, die Filter entsprechen
 
         // Filter lesen
         String gefiltert = cbFiltern.getSelectedItem().toString();
