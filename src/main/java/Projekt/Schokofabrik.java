@@ -32,7 +32,7 @@ public class Schokofabrik extends JFrame {
     private JComboBox cbGröße;
     private JLabel lblAnzahl;
     private JTextField tfAnzahl;
-    private JTextArea textAreaSpeichern;
+    private JTextArea textArea;
     private JButton ausgebenButton;
 
     // ArrayList "schoki" von Objekten des Typs "Schokolade" erstellen
@@ -175,11 +175,14 @@ public class Schokofabrik extends JFrame {
 
     public void ausgeben() {
 
+        // Überschreiben der textArea auf "nichts", damit nur das neue Objekt angehängt wird
+        textArea.setText("");
+
         // wenn Liste "schoki" nicht leer ist
         if (!schoki.isEmpty()) {
 
             for (Schokolade s : schoki) {
-                textAreaSpeichern.append(s.toString());
+                textArea.append(s.toString() + "\n");
             }
         } else {
             // wenn in ArrayList keine Schokolade gespeichert ist
