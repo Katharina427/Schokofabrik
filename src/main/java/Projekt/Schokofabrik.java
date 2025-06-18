@@ -34,9 +34,10 @@ public class Schokofabrik extends JFrame {
     private JTextField tfAnzahl;
     private JTextArea textArea;
     private JButton ausgebenButton;
+    private JButton hinzufügenButton;
 
-    // ArrayList "schoki" von Objekten des Typs "Schokolade" erstellen
-    private ArrayList<Schokolade> schoki = new ArrayList();
+    // ArrayList "bestellung" von Objekten des Typs "Schokolade" erstellen
+    private ArrayList<Schokolade> bestellung = new ArrayList();
 
     // Konstruktor
     public Schokofabrik() {
@@ -65,6 +66,7 @@ public class Schokofabrik extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 speichern();
+
             }
         });
 
@@ -82,12 +84,48 @@ public class Schokofabrik extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                berechnen(); // Methoden-Aufruf
+                berechnen();
+
             }
         });
 
+
+        hinzufügenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                // alle Eingaben löschen
+                gruppierung.clearSelection();
+
+                rbHimbeeren.setSelected(false);
+                rbKekse.setSelected(false);
+                rbNüsse.setSelected(false);
+                rbSalzbrezeln.setSelected(false);
+                rbSmarties.setSelected(false);
+
+                cbGröße.setSelectedIndex(0);
+
+                tfAnzahl.setText("");
+
+                cbVegan.setSelected(false);
+
+                tfPreis.setText("");
+            }
+        });
     }
 
+
+    // initObjekte-Methode
+    public void initObjekte() {
+
+        Schokolade s1 = new Schokolade("Vollmilch", "Himbeeren, Salzbrezeln", "100g (Tafel)", false, 2);
+        Schokolade s2 = new Schokolade("Zartbitter", "Nüsse", "25g (Riegel)", false, 5);
+        Schokolade s3 = new Schokolade("Weiß", "Smarties, Kekse", "300g (XXL Tafel)", true, 1);
+
+        bestellung.add(s1);
+        bestellung.add(s2);
+        bestellung.add(s3);
+    }
 
     // Methode speichern()
     public void speichern() {
@@ -108,8 +146,9 @@ public class Schokofabrik extends JFrame {
             }
 
 
-            // die ausgewählten Toppings erfassen
+            // ausgewählte Toppings erfassen
             String toppings = "";
+
             if (rbHimbeeren.isSelected()) {
                 toppings += "Himbeeren, ";
             } if (rbKekse.isSelected()) {
@@ -142,6 +181,7 @@ public class Schokofabrik extends JFrame {
 
             // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
             String eingabe = tfAnzahl.getText();
+
             if (eingabe.isEmpty()) {
                 throw new IllegalArgumentException("Bitte die gewünschte Anzahl eingeben.");
             }
@@ -158,8 +198,8 @@ public class Schokofabrik extends JFrame {
             // Erstellen eines Objektes der Klasse Schokolade
             Schokolade s = new Schokolade(sorte, toppings, größe, vegan, anzahl);
 
-            // Hinzufügen des Objektes zur ArrayList "schoki"
-            schoki.add(s);
+            // Hinzufügen des Objektes zur ArrayList "bestellung"
+            bestellung.add(s);
 
 
         } catch (NumberFormatException e) {
@@ -178,12 +218,13 @@ public class Schokofabrik extends JFrame {
         // Überschreiben der textArea auf "nichts", damit nur das neue Objekt angehängt wird
         textArea.setText("");
 
-        // wenn Liste "schoki" nicht leer ist
-        if (!schoki.isEmpty()) {
+        // wenn Liste "bestellung" nicht leer ist
+        if (!bestellung.isEmpty()) {
 
-            for (Schokolade s : schoki) {
+            for (Schokolade s : bestellung) {
                 textArea.append(s.toString() + "\n");
             }
+
         } else {
             // wenn in ArrayList keine Schokolade gespeichert ist
             JOptionPane.showMessageDialog(null, "Es wurde keine Schokolade kreiert.");
@@ -211,7 +252,7 @@ public class Schokofabrik extends JFrame {
         // Größenpreise prüfen
         double größenPreis = 0.00;
 
-        String ausgewählteGröße = (String) cbGröße.getSelectedItem();
+        String ausgewählteGröße = cbGröße.getSelectedItem().toString();
 
         if (ausgewählteGröße != null) {
             switch (ausgewählteGröße) {
@@ -224,8 +265,6 @@ public class Schokofabrik extends JFrame {
                 case "300g (XXL Tafel)":
                     größenPreis = 6.00;
                     break;
-                default:
-                    größenPreis = 0.00; // unbekannter Wert, vllt noch Fehlermeldung einfügen
             }
         }
 
@@ -260,9 +299,9 @@ public class Schokofabrik extends JFrame {
 
         try {
             anzahl = Integer.parseInt(tfAnzahl.getText());
-        } catch (NumberFormatException a) {
-            JOptionPane.showMessageDialog(null, "Bitte die gewünschte Anzahl eingeben!");
-            return;
+
+        } catch (IllegalArgumentException a) {
+            JOptionPane.showMessageDialog(null, "Bitte zunächst alle Eingaben tätigen.");
         }
 
         //Gesamtpreis
@@ -271,7 +310,6 @@ public class Schokofabrik extends JFrame {
         tfPreis.setText(gesamtPreis + " €");
 
     }
-
 
     public static void main(String[] args) {
 
