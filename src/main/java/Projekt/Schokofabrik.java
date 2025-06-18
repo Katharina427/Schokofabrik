@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 import java.awt.Color;
 
 public class Schokofabrik extends JFrame {
@@ -34,6 +33,7 @@ public class Schokofabrik extends JFrame {
     private JLabel lblAnzahl;
     private JTextField tfAnzahl;
     private JTextArea textAreaSpeichern;
+    private JButton ausgebenButton;
 
     // ArrayList "schoki" von Objekten des Typs "Schokolade" erstellen
     private ArrayList<Schokolade> schoki = new ArrayList();
@@ -44,24 +44,19 @@ public class Schokofabrik extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setContentPane(myPanel);
         setVisible(true);
-        setSize(700, 400);
+        setSize(700, 600);
 
         // Hintergrundfarbe in hellgrau einfärben
         myPanel.setBackground(Color.LIGHT_GRAY);
 
 
         // Buttongroups erstellen, damit nur ein Radiobutton auswählbar ist
-        ButtonGroup gruppierung1 = new ButtonGroup();
-        ButtonGroup gruppierung2 = new ButtonGroup();
+        ButtonGroup gruppierung = new ButtonGroup();
 
         // Hinzufügen von Radiobuttons zur Gruppe
-        gruppierung1.add(rbVollmilch);
-        gruppierung1.add(rbZartbitter);
-        gruppierung1.add(rbWeiß);
-
-        gruppierung2.add(rbXXL);
-        gruppierung2.add(rb100);
-        gruppierung2.add(rb25);
+        gruppierung.add(rbVollmilch);
+        gruppierung.add(rbZartbitter);
+        gruppierung.add(rbWeiß);
 
 
         // ActionListener
@@ -74,6 +69,15 @@ public class Schokofabrik extends JFrame {
         });
 
 
+        ausgebenButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                ausgeben();
+            }
+        });
+
+
         berechnenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,6 +85,7 @@ public class Schokofabrik extends JFrame {
                 berechnen(); // Methoden-Aufruf
             }
         });
+
     }
 
 
@@ -99,27 +104,33 @@ public class Schokofabrik extends JFrame {
             } else if (rbWeiß.isSelected()) {
                 sorte = "Weiß";
             } else {
-                throw new Exception("Bitte eine Schokoladensorte wählen.");
+                throw new IllegalArgumentException("Bitte eine Schokoladensorte wählen.");
             }
 
 
             // die ausgewählten Toppings erfassen
             String toppings = "";
             if (rbHimbeeren.isSelected()) {
-                toppings += "Himbeeren";
+                toppings += "Himbeeren, ";
             } if (rbKekse.isSelected()) {
-                toppings += "Kekse";
+                toppings += "Kekse, ";
             } if (rbNüsse.isSelected()) {
-                toppings += "Nüsse";
+                toppings += "Nüsse, ";
             } if (rbSalzbrezeln.isSelected()) {
-                toppings += "Salzbrezeln";
+                toppings += "Salzbrezeln, ";
             } if (rbSmarties.isSelected()) {
-                toppings += "Smarties";
+                toppings += "Smarties, ";
+            }
+
+            // Komma und Leerzeichen am Ende entfernen
+            if (!toppings.isEmpty()) {
+                toppings = toppings.substring(0, toppings.length() -2);
+            } else {
+                toppings = "/";
             }
 
             // die ausgewählte Größe erfassen
-            String größe = "";
-            größe = (String) cbGröße.getSelectedItem();
+            String größe = cbGröße.getSelectedItem().toString();
 
 
             // erfassen, ob vegan oder nicht
@@ -132,17 +143,16 @@ public class Schokofabrik extends JFrame {
             // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
             String eingabe = tfAnzahl.getText();
             if (eingabe.isEmpty()) {
-                throw new Exception("Bitte die gewünschte Anzahl eingeben.");
+                throw new IllegalArgumentException("Bitte die gewünschte Anzahl eingeben.");
             }
 
             int anzahl = Integer.parseInt(eingabe);
             if (anzahl < 1) {
-                throw new Exception("Bitte wähle eine gültige Anzahl.");
+                throw new IllegalArgumentException("Bitte wähle eine gültige Anzahl.");
             }
 
 
-            // Zusammenfassung der Bestellung
-            textAreaSpeichern.setText("Schokoladensorte: " + sorte + ", Toppings: " + toppings + ", Größe: " + größe + ", Vegan: " + vegan + ", Anzahl: " + anzahl);
+
 
 
             // Erstellen eines Objektes der Klasse Schokolade
@@ -154,10 +164,27 @@ public class Schokofabrik extends JFrame {
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Bei Anzahl bitte eine ganze Zahl eingeben.");
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
+    }
+
+
+    // Methode ausgeben()
+
+    public void ausgeben() {
+
+        // wenn Liste "schoki" nicht leer ist
+        if (!schoki.isEmpty()) {
+
+            for (Schokolade s : schoki) {
+                textAreaSpeichern.append(s.toString());
+            }
+        } else {
+            // wenn in ArrayList keine Schokolade gespeichert ist
+            JOptionPane.showMessageDialog(null, "Es wurde keine Schokolade kreiert.");
+        }
     }
 
 

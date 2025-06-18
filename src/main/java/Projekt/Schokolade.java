@@ -19,6 +19,10 @@ public class Schokolade {
         this.anzahl = anzahl;
     }
 
+    public String toString() {
+        return "Schokoladensorte: " + sorte + "; Toppings: " + toppings + "; Größe: " + größe + "; Vegan: " + vegan + "; Anzahl: " + anzahl;
+    }
 
-    //
+
+
 }
