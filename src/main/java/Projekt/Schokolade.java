@@ -26,6 +26,7 @@ public class Schokolade {
         return sorte;
     }
 
+
     // berechneEinzelpreis-Methode
     public double berechneEinzelpreis() {
 
