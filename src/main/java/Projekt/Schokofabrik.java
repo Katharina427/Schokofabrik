@@ -58,6 +58,10 @@ public class Schokofabrik extends JFrame {
         gruppierung.add(rbWeiß);
 
 
+        // Aufruf der initObjekte-Methode
+        initObjekte();
+
+
         // ActionListener
         speichernButton.addActionListener(new ActionListener() {
             @Override
@@ -97,6 +101,7 @@ public class Schokofabrik extends JFrame {
         });
 
 
+        // weitere Schokolade hinzugügen - Button
         hinzufügenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -169,6 +174,7 @@ public class Schokofabrik extends JFrame {
             }
 
             // Komma und Leerzeichen am Ende entfernen
+            // wenn Toppings ausgewäht sind
             if (!toppings.isEmpty()) {
                 toppings = toppings.substring(0, toppings.length() -2);
 
@@ -192,16 +198,16 @@ public class Schokofabrik extends JFrame {
             // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
             String eingabe = tfAnzahl.getText();
 
+            // wenn keine Eingabe bei Anzahl gemacht wurde
             if (eingabe.isEmpty()) {
                 throw new IllegalArgumentException("Bitte die gewünschte Anzahl eingeben.");
             }
 
+            // wenn eine negative Zahl eingegeben wird
             int anzahl = Integer.parseInt(eingabe);
             if (anzahl < 1) {
                 throw new IllegalArgumentException("Bitte wähle eine gültige Anzahl.");
             }
-
-
 
 
 
@@ -234,10 +240,6 @@ public class Schokofabrik extends JFrame {
             for (Schokolade s : bestellung) {
                 textArea.append(s.toString() + "\n");
             }
-
-        } else {
-            // wenn in ArrayList keine Schokolade gespeichert ist
-            JOptionPane.showMessageDialog(null, "Es wurde keine Schokolade kreiert.");
         }
     }
 
