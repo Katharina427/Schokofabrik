@@ -21,10 +21,11 @@ public class Schokolade {
         this.anzahl = anzahl;
     }
 
-    // Sorte lesen (später aus dem Objekt), bezieht sich auf filtern()
+    // Sorte aus selbst erstellten Objekten lesen, Rückgriff in filtern()
     public String getSorte() {
         return sorte;
     }
+
 
 
     // berechneEinzelpreis-Methode

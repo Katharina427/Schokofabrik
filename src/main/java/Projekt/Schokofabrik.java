@@ -195,6 +195,7 @@ public class Schokofabrik extends JFrame {
                 vegan = true;
             }
 
+
             // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
             String eingabe = tfAnzahl.getText();
 
@@ -250,8 +251,7 @@ public class Schokofabrik extends JFrame {
         // Überschreiben der textArea auf "nichts", um Doppelungen nach jeder Ausgabe zu vermeiden
         textArea.setText("");
 
-        /* Zugriff auf Attribut "Sorte" des Objekts über Getter-Methode,
-        da Attribute in Klasse "Schokolade" auf private gesetzt sind */
+        // Zugriff auf Attribut "Sorte" der erstellten Objekte
         // nur Ausgabe von Objekten, die Filter entsprechen
 
         // Filter lesen
@@ -277,6 +277,12 @@ public class Schokofabrik extends JFrame {
         }
 
         tfPreis.setText(gesamtpreis + " €");
+    }
+
+    // Methode hinzugügen()
+    public void hinufügen() {
+
+
     }
 
     public static void main(String[] args) {
