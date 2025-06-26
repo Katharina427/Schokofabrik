@@ -229,18 +229,13 @@ public class Schokofabrik extends JFrame {
 
 
     // Methode ausgeben()
-
     public void ausgeben() {
 
         // Überschreiben der textArea auf "nichts", damit nur das neue Objekt angehängt wird
         textArea.setText("");
 
-        // wenn Liste "bestellung" nicht leer ist
-        if (!bestellung.isEmpty()) {
-
-            for (Schokolade s : bestellung) {
-                textArea.append(s.toString() + "\n");
-            }
+        for (Schokolade s : bestellung) {
+            textArea.append(s.toString() + "\n");
         }
     }
 
