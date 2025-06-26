@@ -138,7 +138,6 @@ public class Schokofabrik extends JFrame {
         bestellung.add(s2);
         bestellung.add(s3);
     }
-
     // Methode speichern()
     public void speichern() {
 

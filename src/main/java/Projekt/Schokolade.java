@@ -47,7 +47,9 @@ public class Schokolade {
         }
 
         // Toppingpreis
-        preis += 1.00;
+        if (!toppings.equals("/")) {
+            preis += 1.00;
+        }
 
         // Veganpreis
         if (vegan == true) {
