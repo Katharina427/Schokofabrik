@@ -285,3 +285,8 @@ public class Schokofabrik extends JFrame {
     }
 
 }
+
+// verwendete Quellen und Hilfsmittel:
+// Folienskripte ProgTech SOSE2025 Prof. Dr.-Ing. Dany Meyer
+// Folienskripte Programmiertechnik - Tutorium SOSE 2025 Julia Hosch
+// Folienskripte Programmiertechnik - Tutorium SOSE 2025 Kilian Domhöver
