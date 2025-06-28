@@ -200,7 +200,6 @@ public class Schokofabrik extends JFrame {
 
             // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
             String eingabe = tfAnzahl.getText();
-            int anzahl = Integer.parseInt(eingabe);
 
             // wenn keine Eingabe bei Anzahl gemacht wurde
             if (eingabe.isEmpty()) {
@@ -208,10 +207,10 @@ public class Schokofabrik extends JFrame {
             }
 
             // wenn eine negative Zahl eingegeben wird
+            int anzahl = Integer.parseInt(eingabe);
             if (anzahl < 1) {
                 throw new IllegalArgumentException("Bitte wähle eine gültige Anzahl.");
             }
-
 
 
             // Erstellen eines Objektes der Klasse Schokolade
