@@ -27,14 +27,12 @@ public class Schokolade {
     }
 
 
-
     // berechneEinzelpreis-Methode
     public double berechneEinzelpreis() {
 
         double preis = 0.00;
 
         // Größenpreise
-
         switch (größe) {
             case "Riegel (25g)":
                 preis = 1.50;

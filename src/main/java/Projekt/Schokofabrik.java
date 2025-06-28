@@ -139,6 +139,8 @@ public class Schokofabrik extends JFrame {
         bestellung.add(s2);
         bestellung.add(s3);
     }
+
+
     // Methode speichern()
     public void speichern() {
 
@@ -174,7 +176,7 @@ public class Schokofabrik extends JFrame {
             }
 
             // Komma und Leerzeichen am Ende entfernen
-            // wenn Toppings ausgewäht sind
+            // wenn Toppings ausgewählt sind
             if (!toppings.isEmpty()) {
                 toppings = toppings.substring(0, toppings.length() -2);
 
@@ -198,6 +200,7 @@ public class Schokofabrik extends JFrame {
 
             // Anzahl erfassen und sicher gehen, dass eine Zahl eingegeben wurde
             String eingabe = tfAnzahl.getText();
+            int anzahl = Integer.parseInt(eingabe);
 
             // wenn keine Eingabe bei Anzahl gemacht wurde
             if (eingabe.isEmpty()) {
@@ -205,7 +208,6 @@ public class Schokofabrik extends JFrame {
             }
 
             // wenn eine negative Zahl eingegeben wird
-            int anzahl = Integer.parseInt(eingabe);
             if (anzahl < 1) {
                 throw new IllegalArgumentException("Bitte wähle eine gültige Anzahl.");
             }
@@ -272,12 +274,6 @@ public class Schokofabrik extends JFrame {
         }
 
         tfPreis.setText(gesamtpreis + " €");
-    }
-
-    // Methode hinzugügen()
-    public void hinufügen() {
-
-
     }
 
     public static void main(String[] args) {
