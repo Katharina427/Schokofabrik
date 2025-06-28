@@ -47,6 +47,7 @@ public class Schokofabrik extends JFrame {
 
         // Hintergrundfarbe in hellgrau einfärben
         myPanel.setBackground(Color.LIGHT_GRAY);
+        // Quelle: https://www.gutefrage.net/frage/jframe-hintergrund-aendernjava#:~:text=Die%20Hintergrundfarbe%20kannst%20du%20mit%20der%20setBackground%20-Methode,musst%20das%20Panel%20mit%20setOpaque%20auf%20false%20setzen.
 
 
         // Buttongroups erstellen, damit nur ein Radiobutton auswählbar ist
