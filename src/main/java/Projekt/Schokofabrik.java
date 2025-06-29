@@ -102,7 +102,7 @@ public class Schokofabrik extends JFrame {
         });
 
 
-        // weitere Schokolade hinzugügen - Button
+        // weitere Schokolade hinzufügen - Button
         hinzufügenButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -248,7 +248,7 @@ public class Schokofabrik extends JFrame {
         // Überschreiben der textArea auf "nichts", um Doppelungen nach jeder Ausgabe zu vermeiden
         textArea.setText("");
 
-        // Zugriff auf Attribut "Sorte" der erstellten Objekte
+        // Zugriff auf Attribut "sorte" der erstellten Objekte
         // nur Ausgabe von Objekten, die Filter entsprechen
 
         // Filter lesen
