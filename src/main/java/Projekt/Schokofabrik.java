@@ -147,7 +147,7 @@ public class Schokofabrik extends JFrame {
         try {
 
             // die ausgewählte Sorte erfassen
-            String sorte = "";
+            String sorte;
 
             if (rbVollmilch.isSelected()) {
                 sorte = "Vollmilch";
@@ -161,7 +161,8 @@ public class Schokofabrik extends JFrame {
 
 
             // ausgewählte Toppings erfassen
-            String toppings = "";
+            String toppings = " ";
+            //für die erste Initialisierung des Attributs Toppings als " " wurde ChatGPT verwendet
 
             if (rbHimbeeren.isSelected()) {
                 toppings += "Himbeeren, ";

@@ -13,8 +13,7 @@ class SchokoladeTest {
 
         // Erwarteter Preis: 3.00 (Größe) + 1.00 (Topping) = 4.00 * 2 = 8.00
         double expected = 8.00;
-        double actual = s.berechneEinzelpreis();
 
-        assertEquals(expected, actual);
+        assertEquals(expected, s.berechneEinzelpreis());
     }
 }
